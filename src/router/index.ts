@@ -19,7 +19,7 @@ const router = createRouter({
       path: '/chart',
       name: 'chart',
       // lazy-loaded
-      component: () => import('../views/ChartView.vue'),
+      component: () => import('../views/NetworkView.vue'),
     },
   ],
 })

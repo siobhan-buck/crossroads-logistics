@@ -1,0 +1,154 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "name": "Magic",
+      "primary": true
+    },
+    {
+      "id": 2,
+      "name": "Craft",
+      "primary": true
+    },
+    {
+      "id": 3,
+      "name": "Armour",
+      "primary": true
+    },
+    {
+      "id": 4,
+      "name": "Stealth",
+      "primary": true
+    },
+    {
+      "id": 5,
+      "name": "simple wps"
+    },
+
+    {
+      "id": 6,
+      "name": "primal"
+    },
+    {
+      "id": 7,
+      "name": "contract"
+    },
+    {
+      "id": 8,
+      "name": "death"
+    },
+    {
+      "id": 9,
+      "name": "???"
+    },
+    {
+      "id": 10,
+      "name": "ether"
+    },
+
+    {
+      "id": 11,
+      "name": "chain"
+    },
+    {
+      "id": 12,
+      "name": "leather"
+    },
+    {
+      "id": 13,
+      "name": "plate"
+    },
+    {
+      "id": 14,
+      "name": "shield"
+    },
+    {
+      "id": 15,
+      "name": "heavy wps"
+    }
+  ],
+  "links": [
+    {
+      "source": 3,
+      "target": 14
+    },
+    {
+      "source": 3,
+      "target": 15
+    },
+    {
+      "source": 3,
+      "target": 11
+    },
+    {
+      "source": 3,
+      "target": 12
+    },
+    {
+      "source": 12,
+      "target": 13
+    },
+    {
+      "source": 11,
+      "target": 13
+    },
+    {
+      "source": 1,
+      "target": 2
+    },
+    {
+      "source": 2,
+      "target": 5
+    },
+    {
+      "source": 3,
+      "target": 5
+    },
+    {
+      "source": 1,
+      "target": 4
+    },
+    {
+      "source": 1,
+      "target": 10
+    },
+    {
+      "source": 1,
+      "target": 5
+    },
+    {
+      "source": 1,
+      "target": 6
+    },
+
+    {
+      "source": 2,
+      "target": 3
+    },
+    {
+      "source": 1,
+      "target": 7
+    }
+    ,
+
+    {
+      "source": 3,
+      "target": 4
+    },
+     {
+      "source": 8,
+      "target": 1
+    }
+    ,
+    {
+      "source": 4,
+      "target": 5
+    }
+    ,
+
+    {
+      "source": 1,
+      "target": 9
+    }
+  ]
+}

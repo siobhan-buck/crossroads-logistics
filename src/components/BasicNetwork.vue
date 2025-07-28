@@ -58,12 +58,11 @@ let data: NetworkData = netData;
       .attr("class", "node");
 
   node.append("circle")
-      .attr("r", 20)
-      .style("fill", "#69b3a2");
+      .attr("r", 20);
 
   node.append("text")
-      .attr("dx", 0)
       .attr("dy", ".35em")
+      .attr("text-anchor","middle")
       .text((d) => { return d.name });
 
   // Let's list the force we wanna apply on the network
@@ -102,6 +101,10 @@ let data: NetworkData = netData;
 
 .link {
   stroke: #aaa;
+}
+
+.node circle {
+  fill: #69b3a2;
 }
 
 .node text {

@@ -27,6 +27,7 @@ var svg = d3.select(networkRef.value)
 interface NetworkNode extends d3.SimulationNodeDatum {
   id: number;
   name: string;
+  primary?: boolean;
   x?: number;
   y?: number;
 }
@@ -55,7 +56,8 @@ let data: NetworkData = netData;
     .selectAll(".node")
     .data(data.nodes)
     .enter().append("g")
-      .attr("class", "node");
+      .attr("class", "node")
+      .attr("class", (d) => {return d.primary? "primary-node" : "secondary-node"});
 
   node.append("circle")
       .attr("r", 20);
@@ -103,12 +105,16 @@ let data: NetworkData = netData;
   stroke: #aaa;
 }
 
-.node circle {
-  fill: #69b3a2;
-}
-
 .node text {
   pointer-events: none;
+}
+
+.primary-node circle {
+  fill: #49bfbf;
+}
+
+.secondary-node circle {
+  fill: #49bf88;
 }
 
 </style>

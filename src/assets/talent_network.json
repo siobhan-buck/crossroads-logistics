@@ -2,50 +2,115 @@
   "nodes": [
     {
       "id": 1,
-      "name": "A"
+      "name": "Magic",
+      "primary": true
     },
     {
       "id": 2,
-      "name": "B"
+      "name": "Craft",
+      "primary": true
     },
     {
       "id": 3,
-      "name": "C"
+      "name": "Armour",
+      "primary": true
     },
     {
       "id": 4,
-      "name": "D"
+      "name": "Stealth",
+      "primary": true
     },
     {
       "id": 5,
-      "name": "E"
+      "name": "simple wps"
     },
+
     {
       "id": 6,
-      "name": "F"
+      "name": "primal"
     },
     {
       "id": 7,
-      "name": "G"
+      "name": "contract"
     },
     {
       "id": 8,
-      "name": "H"
+      "name": "death"
     },
     {
       "id": 9,
-      "name": "I"
+      "name": "???"
     },
     {
       "id": 10,
-      "name": "J"
+      "name": "ether"
+    },
+
+    {
+      "id": 11,
+      "name": "chain"
+    },
+    {
+      "id": 12,
+      "name": "leather"
+    },
+    {
+      "id": 13,
+      "name": "plate"
+    },
+    {
+      "id": 14,
+      "name": "shield"
+    },
+    {
+      "id": 15,
+      "name": "heavy wps"
     }
   ],
   "links": [
-
+    {
+      "source": 3,
+      "target": 14
+    },
+    {
+      "source": 3,
+      "target": 15
+    },
+    {
+      "source": 3,
+      "target": 11
+    },
+    {
+      "source": 3,
+      "target": 12
+    },
+    {
+      "source": 12,
+      "target": 13
+    },
+    {
+      "source": 11,
+      "target": 13
+    },
     {
       "source": 1,
       "target": 2
+    },
+    {
+      "source": 2,
+      "target": 5
+    },
+    {
+      "source": 3,
+      "target": 5
+    },
+    {
+      "source": 1,
+      "target": 4
+    },
+    {
+      "source": 1,
+      "target": 10
     },
     {
       "source": 1,
@@ -60,8 +125,8 @@
       "source": 2,
       "target": 3
     },
-            {
-      "source": 2,
+    {
+      "source": 1,
       "target": 7
     }
     ,
@@ -72,7 +137,7 @@
     },
      {
       "source": 8,
-      "target": 3
+      "target": 1
     }
     ,
     {
@@ -82,12 +147,8 @@
     ,
 
     {
-      "source": 4,
+      "source": 1,
       "target": 9
-    },
-    {
-      "source": 5,
-      "target": 10
     }
   ]
 }

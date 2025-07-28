@@ -20,9 +20,9 @@ var svg = d3.select(networkRef.value)
 .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
-.append("g")
-  .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+  .append("svg")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
 
 interface NetworkNode extends d3.SimulationNodeDatum {
   id: number;
@@ -44,20 +44,27 @@ let data: NetworkData = netData;
 
   // Initialize the links
   var link = svg
-    .selectAll("line")
+    .selectAll(".link")
     .data(data.links)
     .enter()
     .append("line")
-      .style("stroke", "#aaa")
+      .attr("class", "link");
 
   // Initialize the nodes
   var node = svg
-    .selectAll("circle")
+    .selectAll(".node")
     .data(data.nodes)
-    .enter()
-    .append("circle")
+    .enter().append("g")
+      .attr("class", "node");
+
+  node.append("circle")
       .attr("r", 20)
-      .style("fill", "#69b3a2")
+      .style("fill", "#69b3a2");
+
+  node.append("text")
+      .attr("dx", 0)
+      .attr("dy", ".35em")
+      .text((d) => { return d.name });
 
   // Let's list the force we wanna apply on the network
   var simulation = d3.forceSimulation(data.nodes)                 // Force algorithm is applied to data.nodes
@@ -77,9 +84,9 @@ let data: NetworkData = netData;
         .attr("x2", d => (d.target as NetworkNode).x ?? 0)
         .attr("y2", d => (d.target as NetworkNode).y ?? 0);
 
-    node
-         .attr("cx", d => d.x?d.x+6:0)
-         .attr("cy", d => d.y?d.y-6:0);
+    node.attr("transform", d => { 
+      return "translate(" + (d.x?d.x+6:0) + "," + (d.y?d.y-6:0) + ")";
+    });
   }
 
 });
@@ -90,3 +97,15 @@ let data: NetworkData = netData;
 <template>
   <div ref="my-network"></div>
 </template>
+
+<style>
+
+.link {
+  stroke: #aaa;
+}
+
+.node text {
+  pointer-events: none;
+}
+
+</style>

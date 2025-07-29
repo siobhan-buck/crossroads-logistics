@@ -45,7 +45,6 @@
       "id": 10,
       "name": "ether"
     },
-
     {
       "id": 11,
       "name": "chain"
@@ -65,9 +64,85 @@
     {
       "id": 15,
       "name": "heavy wps"
+    },
+    {
+      "id": 16,
+      "name": "hide"
+    },
+    {
+      "id": 17,
+      "name": "evade"
+    },
+    {
+      "id": 18,
+      "name": "flank"
+    },
+    {
+      "id": 19,
+      "name": "double wps"
+    },
+    {
+      "id": 20,
+      "name": "wand"
+    },
+    {
+      "id": 21,
+      "name": "potions"
+    },
+    {
+      "id": 22,
+      "name": "doctoring"
+    },
+    {
+      "id": 23,
+      "name": "smithing"
     }
   ],
   "links": [
+    {
+      "source": 2,
+      "target": 14
+    },
+    {
+      "source": 2,
+      "target": 23
+    },
+    {
+      "source": 2,
+      "target": 22
+    },
+    {
+      "source": 2,
+      "target": 21
+    },
+    {
+      "source": 2,
+      "target": 20
+    },
+    {
+      "source": 1,
+      "target": 20
+    },
+    {
+      "source": 4,
+      "target": 16
+    },
+    {
+      "source": 4,
+      "target": 17
+    },
+    {
+      "source": 4,
+      "target": 18
+    },
+    {
+      "source": 3,
+      "target": 19
+    },
+    {
+      "source": 4,
+      "target": 19
+    },
     {
       "source": 3,
       "target": 14

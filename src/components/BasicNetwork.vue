@@ -20,6 +20,7 @@ var svg = d3.select(networkRef.value)
 .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
+  .attr("class", "network")
   .append("svg")
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
@@ -100,6 +101,11 @@ let data: NetworkData = netData;
 </template>
 
 <style>
+
+.network {
+  display: block;
+  margin: auto;
+}
 
 .link {
   stroke: #aaa;

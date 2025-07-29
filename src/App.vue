@@ -1,21 +1,17 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from './components/Banner.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/no.jpg" width="236" height="236" />
-
-    <div class="wrapper">
       <HelloWorld msg="Crossroads LARP" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/chart">Chart</RouterLink>
+        <RouterLink to="/play">Play</RouterLink>
       </nav>
-    </div>
   </header>
 
   <RouterView />
@@ -34,9 +30,10 @@ header {
 
 nav {
   width: 100%;
-  font-size: 12px;
+  font-size: 32px;
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 nav a.router-link-exact-active {
@@ -55,32 +52,5 @@ nav a {
 
 nav a:first-of-type {
   border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
 }
 </style>

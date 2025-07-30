@@ -16,8 +16,8 @@ const router = createRouter({
       component: () => import('../views/AboutView.vue'),
     },
     {
-      path: '/play',
-      name: 'play',
+      path: '/build',
+      name: 'build',
       // lazy-loaded
       component: () => import('../views/NetworkView.vue'),
     },

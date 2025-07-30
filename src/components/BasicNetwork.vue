@@ -12,8 +12,8 @@ const networkRef = useTemplateRef('my-network');
 onMounted(() => {
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 30, bottom: 30, left: 40},
-  width = 780 - margin.left - margin.right,
-  height = 780 - margin.top - margin.bottom;
+  width = 1080 - margin.left - margin.right,
+  height = 1080 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select(networkRef.value)
@@ -29,11 +29,13 @@ interface NetworkNode extends d3.SimulationNodeDatum {
   id: number;
   name: string;
   primary?: boolean;
+  root?: boolean;
   x?: number;
   y?: number;
 }
 
 interface NetworkLink extends d3.SimulationLinkDatum<NetworkNode> {
+  weight: number;
 }
 
 type NetworkData = {
@@ -57,8 +59,9 @@ let data: NetworkData = netData;
     .selectAll(".node")
     .data(data.nodes)
     .enter().append("g")
-      .attr("class", "node")
-      .attr("class", (d) => {return d.primary? "primary-node" : "secondary-node"});
+      .attr("class", (d) => {
+        return d.root? "node root-node" : d.primary? "node primary-node" : "node secondary-node"
+      });
 
   node.append("circle")
       .attr("r", 20);
@@ -74,7 +77,7 @@ let data: NetworkData = netData;
             .id(function(d) { return d.id; })                     // This provide  the id of a node
             .links(data.links)                                    // and this the list of links
       )
-      .force("charge", d3.forceManyBody().strength(-400))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
+      .force("charge", d3.forceManyBody().strength(-600))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
       .force("center", d3.forceCenter(width / 2, height / 2))     // This force attracts nodes to the center of the svg area
       .on("end", ticked);
 
@@ -113,6 +116,14 @@ let data: NetworkData = netData;
 
 .node text {
   pointer-events: none;
+}
+
+.node circle:hover {
+  fill: #bf9049;
+}
+
+.root-node circle {
+  fill: #bf6e49;
 }
 
 .primary-node circle {

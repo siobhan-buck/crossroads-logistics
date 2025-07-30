@@ -8,6 +8,6 @@ const talentPoints = 10;
 <template>
   <main>
     <TalentPoints :points=talentPoints />
-    <BasicNetwork/>
+    <BasicNetwork :width=1080 :height=1080 />
   </main>
 </template>

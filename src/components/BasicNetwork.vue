@@ -1,34 +1,23 @@
 <script setup lang="ts">
 import * as d3 from 'd3';
-import { useTemplateRef, onMounted, defineComponent } from 'vue';
+import { useTemplateRef, onMounted } from 'vue';
 import type {NetworkData, NetworkLink, NetworkNode} from '../stores/network.types';
 import netData from '../assets/talent_network.json';
 
-defineComponent(
-  {
-    name: 'BasicNetwork'
-  }
-);
 
+const props = defineProps<{width: number, height: number}>();
 const networkRef = useTemplateRef('my-network');
 
 onMounted(() => {
-// set the dimensions and margins of the graph
-const margin = {top: 10, right: 30, bottom: 30, left: 40},
-  width = 1080 - margin.left - margin.right,
-  height = 1080 - margin.top - margin.bottom;
 
-// append the svg object to the body of the page
-const svg = d3.select(networkRef.value)
-.append("svg")
-  .attr("width", width + margin.left + margin.right)
-  .attr("height", height + margin.top + margin.bottom)
-  .attr("class", "network")
+  // append the svg object to the body of the page
+  const svg = d3.select(networkRef.value)
   .append("svg")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+    .attr("width", props.width)
+    .attr("height", props.height)
+    .attr("class", "network");
 
-const data: NetworkData = netData;
+  const data: NetworkData = netData;
 
   // Initialize the links
   const link = svg
@@ -62,10 +51,10 @@ const data: NetworkData = netData;
             .links(data.links)                                    // and this the list of links
       )
       .force("charge", d3.forceManyBody().strength(-600))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
-      .force("center", d3.forceCenter(width / 2, height / 2))     // This force attracts nodes to the center of the svg area
+      .force("center", d3.forceCenter(props.width / 2, props.height / 2))     // This force attracts nodes to the center of the svg area
       .on("end", ticked);
 
-  // This function is run at each iteration of the force algorithm, updating the nodes position.
+  // This function is run at the end of the force algorithm, updating the nodes position.
   function ticked() {
     link
         .attr("x1", d => (d.source as NetworkNode).x ?? 0)
@@ -76,18 +65,20 @@ const data: NetworkData = netData;
     node.attr("transform", d => { 
       return "translate(" + (d.x?d.x+6:0) + "," + (d.y?d.y-6:0) + ")";
     });
+    d3.select(networkRef.value).attr("class", "network");
   }
 
 });
-
-
 </script>
 
 <template>
-  <div ref="my-network"></div>
+  <div ref="my-network" class="hidden"></div>
 </template>
 
 <style>
+.hidden {
+  visibility: hidden;
+}
 
 .network {
   display: block;
@@ -117,5 +108,4 @@ const data: NetworkData = netData;
 .secondary-node circle {
   fill: #49bf88;
 }
-
 </style>

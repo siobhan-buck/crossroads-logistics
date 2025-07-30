@@ -30,16 +30,18 @@ onMounted(() => {
     .data(data.nodes)
     .enter().append('g')
       .attr('class', (d) => {
-        return d.root? 'node selected-node' : 'node secondary-node'
+        return d.root? 'root-node' : 'node secondary-node'
       });
 
   node.append('circle')
       .attr('r', 20)
       .on('click', (e, d) => {
-        emit('nodeToggled', d.id);
-        let classList = (e.target as SVGCircleElement).parentElement?.classList;
-        classList?.toggle('selected-node');
-        classList?.toggle('secondary-node');
+        if (d.root != true) {
+          emit('nodeToggled', d.id);
+          let classList = (e.target as SVGCircleElement).parentElement?.classList;
+          classList?.toggle('selected-node');
+          classList?.toggle('secondary-node');
+        }
       });
 
   node.append('text')
@@ -99,8 +101,12 @@ onMounted(() => {
   stroke: #aaa;
 }
 
-.selected-node circle {
+.root-node circle {
   fill: #bf6e49;
+}
+
+.selected-node circle {
+  fill: #bf9049;
 }
 
 .node circle:hover {

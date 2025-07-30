@@ -2,23 +2,19 @@
   "nodes": [
     {
       "id": 1,
-      "name": "Magic",
-      "primary": true
+      "name": "Magic"
     },
     {
       "id": 2,
-      "name": "Craft",
-      "primary": true
+      "name": "Craft"
     },
     {
       "id": 3,
-      "name": "Armour",
-      "primary": true
+      "name": "Armour"
     },
     {
       "id": 4,
-      "name": "Stealth",
-      "primary": true
+      "name": "Stealth"
     },
     {
       "id": 5,

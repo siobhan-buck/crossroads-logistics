@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/Banner.vue'
+import TheBanner from './components/TheBanner.vue'
 </script>
 
 <template>
   <header>
-      <HelloWorld msg="Crossroads LARP" />
+      <TheBanner msg="Crossroads LARP" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>

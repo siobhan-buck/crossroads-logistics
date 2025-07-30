@@ -7,7 +7,7 @@ defineProps<{
 <template>
   <div class="greetings">
     <div class="token">
-      <img alt="Crossroads logo" class="logo" src="@/assets/no.jpg" width="236" height="236" />
+      <img alt="Crossroads logo" class="logo" src="@/assets/no.jpg" width="124" height="124" />
       <h1 class="green">{{ msg }}</h1>
       <h3>A Live Action Roleplaying Game optimized for collaborative story telling</h3>
     </div>
@@ -38,7 +38,7 @@ h3 {
 .greetings {
   display: flex;
   align-items: center;
-  --minHeight: 31vh;
+  --minHeight: 20vh;
   min-height: var(--minHeight);
   width:100%;
   position:relative;

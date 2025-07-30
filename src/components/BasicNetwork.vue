@@ -1,22 +1,25 @@
 <script setup lang="ts">
 import * as d3 from 'd3';
 import { useTemplateRef, onMounted, defineComponent } from 'vue';
+import type {NetworkData, NetworkLink, NetworkNode} from '../stores/network.types';
 import netData from '../assets/talent_network.json';
 
 defineComponent(
-  {name: 'BasicNetwork'}
+  {
+    name: 'BasicNetwork'
+  }
 );
 
 const networkRef = useTemplateRef('my-network');
 
 onMounted(() => {
 // set the dimensions and margins of the graph
-var margin = {top: 10, right: 30, bottom: 30, left: 40},
+const margin = {top: 10, right: 30, bottom: 30, left: 40},
   width = 1080 - margin.left - margin.right,
   height = 1080 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
-var svg = d3.select(networkRef.value)
+const svg = d3.select(networkRef.value)
 .append("svg")
   .attr("width", width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
@@ -25,29 +28,10 @@ var svg = d3.select(networkRef.value)
     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-interface NetworkNode extends d3.SimulationNodeDatum {
-  id: number;
-  name: string;
-  primary?: boolean;
-  root?: boolean;
-  x?: number;
-  y?: number;
-}
-
-interface NetworkLink extends d3.SimulationLinkDatum<NetworkNode> {
-  weight: number;
-}
-
-type NetworkData = {
-  nodes: Array<NetworkNode>;
-  links: Array<NetworkLink>;
-};
-
-let data: NetworkData = netData;
-// let data: NetworkData = JSON.parse(readFileSync('../asets/talent_network.json', 'utf-8'));
+const data: NetworkData = netData;
 
   // Initialize the links
-  var link = svg
+  const link = svg
     .selectAll(".link")
     .data(data.links)
     .enter()
@@ -55,7 +39,7 @@ let data: NetworkData = netData;
       .attr("class", "link");
 
   // Initialize the nodes
-  var node = svg
+  const node = svg
     .selectAll(".node")
     .data(data.nodes)
     .enter().append("g")
@@ -72,7 +56,7 @@ let data: NetworkData = netData;
       .text((d) => { return d.name });
 
   // Let's list the force we wanna apply on the network
-  var simulation = d3.forceSimulation(data.nodes)                 // Force algorithm is applied to data.nodes
+  d3.forceSimulation(data.nodes)                                  // Force algorithm is applied to data.nodes
       .force("link", d3.forceLink<NetworkNode, NetworkLink>()     // This force provides links between nodes
             .id(function(d) { return d.id; })                     // This provide  the id of a node
             .links(data.links)                                    // and this the list of links

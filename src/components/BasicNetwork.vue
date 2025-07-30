@@ -7,18 +7,14 @@ import netData from '../assets/talent_network.json';
 
 const props = defineProps<{width: number, height: number}>();
 const networkRef = useTemplateRef('my-network');
+const svgRef = useTemplateRef('my-svg');
 
 onMounted(() => {
-
-  // append the svg object to the body of the page
-  const svg = d3.select(networkRef.value)
-  .append('svg')
-    .attr('width', props.width)
-    .attr('height', props.height)
-    .attr('class', 'network');
-
+  // serialize the data from json
   const data: NetworkData = netData;
 
+  // append the svg object to the body of the page
+  const svg = d3.select(svgRef.value);
   // Initialize the links
   const link = svg
     .selectAll('.link')
@@ -65,14 +61,17 @@ onMounted(() => {
     node.attr('transform', d => { 
       return 'translate(' + (d.x?d.x+6:0) + ',' + (d.y?d.y-6:0) + ')';
     });
-    d3.select(networkRef.value).attr('class', 'network');
+    d3.select(networkRef.value).attr('class', '');
   }
 
 });
 </script>
 
 <template>
-  <div ref='my-network' class='hidden'></div>
+  <div ref="my-network" class="hidden">
+    <svg ref="my-svg" :width="width" :height="height" class="network">
+    </svg>
+  </div>
 </template>
 
 <style>

@@ -8,6 +8,6 @@ const talentPoints = 10;
 <template>
   <main>
     <TalentPoints :points=talentPoints />
-    <BasicNetwork :width=1080 :height=1080 />
+    <BasicNetwork @node-toggled="(id) => console.log(id)" :width=1080 :height=720 />
   </main>
 </template>

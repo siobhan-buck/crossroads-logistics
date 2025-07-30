@@ -6,6 +6,7 @@ import netData from '../assets/talent_network.json';
 
 
 const props = defineProps<{width: number, height: number}>();
+const emit = defineEmits(['nodeToggled']);
 const networkRef = useTemplateRef('my-network');
 const svgRef = useTemplateRef('my-svg');
 
@@ -29,11 +30,17 @@ onMounted(() => {
     .data(data.nodes)
     .enter().append('g')
       .attr('class', (d) => {
-        return d.root? 'node root-node' : d.primary? 'node primary-node' : 'node secondary-node'
+        return d.root? 'node selected-node' : 'node secondary-node'
       });
 
   node.append('circle')
-      .attr('r', 20);
+      .attr('r', 20)
+      .on('click', (e, d) => {
+        emit('nodeToggled', d.id);
+        let classList = (e.target as SVGCircleElement).parentElement?.classList;
+        classList?.toggle('selected-node');
+        classList?.toggle('secondary-node');
+      });
 
   node.append('text')
       .attr('dy', '.35em')
@@ -84,27 +91,25 @@ onMounted(() => {
   margin: auto;
 }
 
+.network text {
+  pointer-events: none;
+}
+
 .link {
   stroke: #aaa;
 }
 
-.node text {
-  pointer-events: none;
-}
-
-.node circle:hover {
-  fill: #bf9049;
-}
-
-.root-node circle {
+.selected-node circle {
   fill: #bf6e49;
 }
 
-.primary-node circle {
-  fill: #49bfbf;
+.node circle:hover {
+  fill: #49bf88;
+  cursor: pointer;
 }
 
 .secondary-node circle {
-  fill: #49bf88;
+  fill: #c7c9c8;
 }
+
 </style>

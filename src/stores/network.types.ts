@@ -1,7 +1,6 @@
 export interface NetworkNode extends d3.SimulationNodeDatum {
   id: number;
   name: string;
-  primary?: boolean;
   root?: boolean;
   x?: number;
   y?: number;

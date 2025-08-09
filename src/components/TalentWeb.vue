@@ -1,7 +1,7 @@
 <script setup lang='ts'>
 import * as d3 from 'd3';
 import { useTemplateRef, onMounted } from 'vue';
-import type {WebData as WebData, WebLink, WebNode} from '../stores/builder.types';
+import type {WebData, WebLink, WebNode} from '../stores/builder.types';
 import webData from '../assets/talent_web.json';
 
 

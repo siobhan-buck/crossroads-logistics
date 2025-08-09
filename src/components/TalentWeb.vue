@@ -5,17 +5,21 @@ import type {WebData, WebLink, WebNode} from '../stores/builder.types';
 import webData from '../assets/talent_web.json';
 
 
-const props = defineProps<{width: number, height: number}>();
+const props = defineProps<{height: number}>();
 const emit = defineEmits(['nodeToggled']);
 const webRef = useTemplateRef('my-web');
-const svgRef = useTemplateRef('my-svg');
 
 onMounted(() => {
   // serialize the data from json
   const data: WebData = webData;
 
   // append the svg object to the body of the page
-  const svg = d3.select(svgRef.value);
+  const width = webRef.value? webRef.value.offsetWidth : 1080;
+  const svg = d3.select(webRef.value)
+    .append('svg')
+      .attr('width', width)
+      .attr('height', props.height);
+
   // Initialize the links
   const link = svg
     .selectAll('.link')
@@ -56,7 +60,7 @@ onMounted(() => {
             .links(data.links)                                    // and this the list of links
       )
       .force('charge', d3.forceManyBody().strength(-600))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
-      .force('center', d3.forceCenter(props.width / 2, props.height / 2))     // This force attracts nodes to the center of the svg area
+      .force('center', d3.forceCenter(width / 2, props.height / 2))     // This force attracts nodes to the center of the svg area
       .on('end', ticked);
 
   // This function is run at the end of the force algorithm, updating the nodes position.
@@ -70,16 +74,14 @@ onMounted(() => {
     node.attr('transform', d => { 
       return 'translate(' + (d.x?d.x+6:0) + ',' + (d.y?d.y-6:0) + ')';
     });
-    d3.select(webRef.value).attr('class', '');
+    d3.select(webRef.value).attr('class', 'diagram');
   }
 
 });
 </script>
 
 <template>
-  <div ref="my-web" class="hidden">
-    <svg ref="my-svg" :width="width" :height="height" class="network">
-    </svg>
+  <div ref="my-web" class="hidden diagram">
   </div>
 </template>
 
@@ -88,12 +90,7 @@ onMounted(() => {
   visibility: hidden;
 }
 
-.network {
-  display: block;
-  margin: auto;
-}
-
-.network text {
+.diagram text {
   pointer-events: none;
 }
 

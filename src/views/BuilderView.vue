@@ -18,11 +18,11 @@ var toggle = (id: number) => {
   <main>
     <TalentPoints v-bind:points="talentPoints" />
     <div class="flex-container">
+      <div class="talents-diagram">
+        <TalentWeb @node-toggled="toggle" :height=790 />
+      </div>
       <div class="skills-pannel">
         <SkillPannel :talents="talentsTaken" :key="talentPoints"/>
-      </div>
-      <div class="talents-diagram">
-        <TalentWeb @node-toggled="toggle" :height=720 />
       </div>
     </div>
   </main>
@@ -30,10 +30,10 @@ var toggle = (id: number) => {
 
 <style>
 .skills-pannel {
-  width: 25%;
+  width: 50%;
 }
 
 .talents-diagram {
-  width: 75%;
+  width: 50%;
 }
 </style>

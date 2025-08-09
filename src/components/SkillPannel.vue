@@ -7,7 +7,6 @@ const data: Array<SkillData> = skillList;
 const props = defineProps<{talents: Set<number>}>();
 
 const prereqSatisfied = (skill: SkillData) => {
-    console.log('checking with talents', props.talents);
     var found = false;
     skill.talents.forEach( (id) => {
         if (props.talents.has(id)) {

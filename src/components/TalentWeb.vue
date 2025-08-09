@@ -1,28 +1,32 @@
 <script setup lang='ts'>
 import * as d3 from 'd3';
 import { useTemplateRef, onMounted } from 'vue';
-import type {NetworkData, NetworkLink, NetworkNode} from '../stores/network.types';
-import netData from '../assets/talent_network.json';
+import type {WebData, WebLink, WebNode} from '../stores/builder.types';
+import webData from '../assets/talent_web.json';
 
 
-const props = defineProps<{width: number, height: number}>();
+const props = defineProps<{height: number}>();
 const emit = defineEmits(['nodeToggled']);
-const networkRef = useTemplateRef('my-network');
-const svgRef = useTemplateRef('my-svg');
+const webRef = useTemplateRef('my-web');
 
 onMounted(() => {
   // serialize the data from json
-  const data: NetworkData = netData;
+  const data: WebData = webData;
 
   // append the svg object to the body of the page
-  const svg = d3.select(svgRef.value);
+  const width = webRef.value? webRef.value.offsetWidth : 1080;
+  const svg = d3.select(webRef.value)
+    .append('svg')
+      .attr('width', width)
+      .attr('height', props.height);
+
   // Initialize the links
   const link = svg
     .selectAll('.link')
     .data(data.links)
     .enter()
     .append('line')
-      .attr('class', 'link');
+      .attr('class', (d) => {return d.weight > 0 ? 'link' : ''});
 
   // Initialize the nodes
   const node = svg
@@ -51,35 +55,33 @@ onMounted(() => {
 
   // Let's list the force we wanna apply on the network
   d3.forceSimulation(data.nodes)                                  // Force algorithm is applied to data.nodes
-      .force('link', d3.forceLink<NetworkNode, NetworkLink>()     // This force provides links between nodes
+      .force('link', d3.forceLink<WebNode, WebLink>()     // This force provides links between nodes
             .id(function(d) { return d.id; })                     // This provide  the id of a node
             .links(data.links)                                    // and this the list of links
       )
-      .force('charge', d3.forceManyBody().strength(-600))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
-      .force('center', d3.forceCenter(props.width / 2, props.height / 2))     // This force attracts nodes to the center of the svg area
+      .force('charge', d3.forceManyBody().strength(-500))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
+      .force('center', d3.forceCenter(width / 2, props.height / 2))     // This force attracts nodes to the center of the svg area
       .on('end', ticked);
 
   // This function is run at the end of the force algorithm, updating the nodes position.
   function ticked() {
     link
-        .attr('x1', d => (d.source as NetworkNode).x ?? 0)
-        .attr('y1', d => (d.source as NetworkNode).y ?? 0)
-        .attr('x2', d => (d.target as NetworkNode).x ?? 0)
-        .attr('y2', d => (d.target as NetworkNode).y ?? 0);
+        .attr('x1', d => (d.source as WebNode).x ?? 0)
+        .attr('y1', d => (d.source as WebNode).y ?? 0)
+        .attr('x2', d => (d.target as WebNode).x ?? 0)
+        .attr('y2', d => (d.target as WebNode).y ?? 0);
 
     node.attr('transform', d => { 
       return 'translate(' + (d.x?d.x+6:0) + ',' + (d.y?d.y-6:0) + ')';
     });
-    d3.select(networkRef.value).attr('class', '');
+    d3.select(webRef.value).attr('class', 'diagram');
   }
 
 });
 </script>
 
 <template>
-  <div ref="my-network" class="hidden">
-    <svg ref="my-svg" :width="width" :height="height" class="network">
-    </svg>
+  <div ref="my-web" class="hidden diagram">
   </div>
 </template>
 
@@ -88,12 +90,7 @@ onMounted(() => {
   visibility: hidden;
 }
 
-.network {
-  display: block;
-  margin: auto;
-}
-
-.network text {
+.diagram text {
   pointer-events: none;
 }
 

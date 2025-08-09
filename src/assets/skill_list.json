@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Identify Magic",
+        "talents": [1],
+        "description": "Identify all active magic effects on a person or item.",
+        "cost": 1
+    },
+    {
+        "id": 2,
+        "name": "Fortify",
+        "talents": [11, 12, 13],
+        "description": "Restore a small amount of armour points. Double with an assistant.",
+        "cost": 1
+    },
+    {
+        "id": 3,
+        "name": "Wildform",
+        "talents": [6],
+        "description": "Adopt the shape of a terrestrial animal.",
+        "cost": 1
+    },
+    {
+        "id": 4,
+        "name": "Barricade",
+        "talents": [14],
+        "description": "Negate the effect of a spell that hits your shield.",
+        "cost": 1
+    },
+    {
+        "id": 5,
+        "name": "Aid",
+        "talents": [22],
+        "description": "Heal all injuries from a target.",
+        "cost": 1
+    },
+    {
+        "id": 6,
+        "name": "Sneak Attack",
+        "talents": [18],
+        "description": "Double damage on a strike when flanking.",
+        "cost": 1
+    }
+]

@@ -1,0 +1,9 @@
+[
+    {
+        "id": 1,
+        "name": "Identify Magic",
+        "talents": [1],
+        "description": "30s to identify all active magic effects on a person or item.",
+        "cost": 1
+    }
+]

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import BasicNetwork from '../components/BasicNetwork.vue';
+import TalentWeb from '../components/TalentWeb.vue';
 import TalentPoints from '../components/TalentPoints.vue';
 
 const talentPoints = ref(10);
@@ -17,6 +17,6 @@ var toggle = (id: number) => {
 <template>
   <main>
     <TalentPoints v-bind:points="talentPoints" />
-    <BasicNetwork @node-toggled="toggle" :width=1080 :height=720 />
+    <TalentWeb @node-toggled="toggle" :width=1080 :height=720 />
   </main>
 </template>

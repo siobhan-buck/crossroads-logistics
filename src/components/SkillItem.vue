@@ -1,8 +1,5 @@
 <template>
   <div class="item">
-    <i>
-      <slot name="icon"></slot>
-    </i>
     <div class="details">
       <h3>
         <slot name="heading"></slot>
@@ -11,3 +8,10 @@
     </div>
   </div>
 </template>
+
+<style>
+.item {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+</style>

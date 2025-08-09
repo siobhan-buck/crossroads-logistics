@@ -5,11 +5,10 @@ import TalentPoints from '../components/TalentPoints.vue';
 import SkillPannel from '@/components/SkillPannel.vue';
 
 const talentPoints = ref(10);
-const talentsTaken = new Set();
+const talentsTaken = new Set<number>();
 
 var toggle = (id: number) => {
   talentsTaken.has(id) ? talentsTaken.delete(id) : talentsTaken.add(id)
-  console.log(talentsTaken);
   talentPoints.value = 10 - talentsTaken.size;
 }
 
@@ -17,12 +16,12 @@ var toggle = (id: number) => {
 
 <template>
   <main>
+    <TalentPoints v-bind:points="talentPoints" />
     <div class="flex-container">
       <div class="skills-pannel">
-        <SkillPannel />
+        <SkillPannel :talents="talentsTaken" :key="talentPoints"/>
       </div>
       <div class="talents-diagram">
-        <TalentPoints v-bind:points="talentPoints" />
         <TalentWeb @node-toggled="toggle" :height=720 />
       </div>
     </div>

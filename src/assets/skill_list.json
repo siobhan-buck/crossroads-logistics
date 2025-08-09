@@ -3,14 +3,14 @@
         "id": 1,
         "name": "Identify Magic",
         "talents": [1],
-        "description": "30s to identify all active magic effects on a person or item.",
+        "description": "Identify all active magic effects on a person or item.",
         "cost": 1
     },
     {
         "id": 2,
         "name": "Fortify",
-        "talents": [12, 13, 14],
-        "description": "With 30s of readjustment RP, restore a small amount of armour points. Restore double with an assistant.",
+        "talents": [11, 12, 13],
+        "description": "Restore a small amount of armour points. Double with an assistant.",
         "cost": 1
     }
 ]

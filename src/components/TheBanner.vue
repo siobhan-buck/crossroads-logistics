@@ -9,7 +9,7 @@ defineProps<{
     <div class="token">
       <img alt="Crossroads logo" class="logo" src="@/assets/no.jpg" width="124" height="124" />
       <h1 class="green">{{ msg }}</h1>
-      <h3>A Live Action Roleplaying Game optimized for collaborative story telling</h3>
+      <h3>a Live Action Roleplaying Game optimized for collaborative story telling</h3>
     </div>
   </div>
 </template>

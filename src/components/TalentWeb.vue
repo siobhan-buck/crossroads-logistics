@@ -59,7 +59,7 @@ onMounted(() => {
             .id(function(d) { return d.id; })                     // This provide  the id of a node
             .links(data.links)                                    // and this the list of links
       )
-      .force('charge', d3.forceManyBody().strength(-500))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
+      .force('charge', d3.forceManyBody().strength(-350))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
       .force('center', d3.forceCenter(width / 2, props.height / 2))     // This force attracts nodes to the center of the svg area
       .on('end', ticked);
 
@@ -72,7 +72,7 @@ onMounted(() => {
         .attr('y2', d => (d.target as WebNode).y ?? 0);
 
     node.attr('transform', d => { 
-      return 'translate(' + (d.x?d.x+6:0) + ',' + (d.y?d.y-6:0) + ')';
+      return 'translate(' + (d.x?d.x+3:0) + ',' + (d.y?d.y-3:0) + ')';
     });
     d3.select(webRef.value).attr('class', 'diagram');
   }

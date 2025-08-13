@@ -1,0 +1,32 @@
+[
+  {
+    "episode": 0,
+    "talent": 10,
+    "skills": 100
+  },
+  {
+    "episode": 1,
+    "talent": 4,
+    "skills": 30
+  },
+  {
+    "episode": 5,
+    "talent": 3,
+    "skills": 20
+  },
+  {
+    "episode": 10,
+    "talent": 2,
+    "skills": 15
+  },
+  {
+    "episode": 15,
+    "talent": 1,
+    "skills": 10
+  },
+  {
+    "episode": 20,
+    "talent": 0,
+    "skills": 5
+  }
+]

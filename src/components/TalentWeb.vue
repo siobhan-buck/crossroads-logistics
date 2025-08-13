@@ -72,7 +72,7 @@ onMounted(() => {
         .attr('y2', d => (d.target as WebNode).y ?? 0);
 
     node.attr('transform', d => { 
-      return 'translate(' + (d.x?d.x+3:0) + ',' + (d.y?d.y-3:0) + ')';
+      return 'translate(' + (d.x?d.x+6:0) + ',' + (d.y?d.y-6:0) + ')';
     });
     d3.select(webRef.value).attr('class', 'diagram');
   }

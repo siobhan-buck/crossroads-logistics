@@ -1,17 +1,18 @@
 <script setup lang="ts">
 defineProps<{
-  points: number
+  points: number,
+  type: string
 }>()
 </script>
 
 <template>
-    <div class="talent-points-total">
-        {{ points }} talent points to spend
+    <div class="build-points-total">
+        {{ points }} {{ type }} points to spend
     </div>
 </template>
 
 <style scoped>
-.talent-points-total{
+.build-points-total{
     display: block;
     margin: auto;
     text-align: center;

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import TalentWeb from '../components/TalentWeb.vue';
-import TalentPoints from '../components/TalentPoints.vue';
+import BuildPoints from '../components/BuildPoints.vue';
 import SkillPannel from '@/components/SkillPannel.vue';
 
-const talentPoints = ref(10);
+const talentPoints = ref(3);
 const talentsTaken = new Set<number>();
 
 var toggle = (id: number) => {
@@ -18,7 +18,7 @@ var toggle = (id: number) => {
   <main>
     <div class="flex-container">
       <div class="talents-diagram">
-        <TalentPoints v-bind:points="talentPoints" />
+        <BuildPoints v-bind:points="talentPoints" type="talent" />
         <TalentWeb @node-toggled="toggle" :height=790 />
       </div>
       <div class="skills-pannel">

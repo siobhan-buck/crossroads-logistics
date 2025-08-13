@@ -1,15 +1,42 @@
+<script setup lang="ts">
+import type { SkillData } from '@/stores/builder.types';
+import { ref } from 'vue';
+
+const props = defineProps<{
+  skill: SkillData,
+}>()
+const emit = defineEmits(['skillTransaction']);
+
+var purchases = ref(0);
+
+const addSkill = () => {
+  purchases.value++;
+  emit('skillTransaction', -1* props.skill.cost);
+}
+
+const removeSkill = () => {
+  purchases.value--;
+  emit('skillTransaction', props.skill.cost);
+}
+</script>
+
 <template>
-  <div class="item">
-    <h3>
-      <slot name="heading"></slot>
-    </h3>
-    <slot></slot>
+  <div class="skill-item">
+    <div>
+      {{ purchases }}
+      <button @click="addSkill()">+1</button>
+      <button @click="removeSkill()">-1</button>
+      <h3>
+        {{ props.skill.name }} ({{ props.skill.cost }})
+      </h3>
+    </div>
+    {{ props.skill.description }}
   </div>
 </template>
 
 <style>
-.item {
+.skill-item {
   margin-left: 10px;
-  margin-bottom: 10px;
 }
+
 </style>

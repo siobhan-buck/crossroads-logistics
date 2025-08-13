@@ -93,9 +93,18 @@
     {
       "id": 23,
       "name": "smithing"
+    },
+    {
+      "id": 24,
+      "name": "larceny"
     }
   ],
   "links": [
+    {
+      "source": 16,
+      "target": 24,
+      "weight": 1
+    },
     {
       "source": 2,
       "target": 14,
@@ -202,7 +211,22 @@
       "weight": 1
     },
     {
-      "source": 1,
+      "source": 6,
+      "target": 10,
+      "weight": 1
+    },
+    {
+      "source": 7,
+      "target": 10,
+      "weight": 1
+    },
+    {
+      "source": 8,
+      "target": 10,
+      "weight": 1
+    },
+    {
+      "source": 9,
       "target": 10,
       "weight": 1
     },

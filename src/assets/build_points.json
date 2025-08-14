@@ -1,32 +1,47 @@
 [
   {
     "episode": 0,
-    "talent": 10,
+    "talents": 10,
     "skills": 100
   },
   {
     "episode": 1,
-    "talent": 4,
+    "talents": 4,
+    "skills": 30
+  },
+  {
+    "episode": 2,
+    "talents": 4,
+    "skills": 30
+  },
+  {
+    "episode": 3,
+    "talents": 4,
+    "skills": 30
+  },
+  {
+    "episode": 4,
+    "talents": 4,
     "skills": 30
   },
   {
     "episode": 5,
-    "talent": 3,
+    "talents": 3,
     "skills": 20
   },
   {
     "episode": 10,
-    "talent": 2,
+    "talents": 2,
     "skills": 15
   },
   {
     "episode": 15,
-    "talent": 1,
+    "talents": 1,
     "skills": 10
   },
   {
     "episode": 20,
-    "talent": 0,
+    "talents": 0,
     "skills": 5
   }
 ]

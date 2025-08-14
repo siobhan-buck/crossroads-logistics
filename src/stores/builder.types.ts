@@ -22,3 +22,9 @@ export type SkillData = {
   description: string;
   cost: number;
 }
+
+export type PointsData = {
+  episode: number;
+  talents: number;
+  skills: number;
+}

@@ -27,6 +27,15 @@ onMounted(() => {
             skillPoints.value += d.skills;
         }
     });
+    let epilogues = character.episodes - pointsData.length + 1
+    if (epilogues > 0) {
+      pointsData.sort((a, b) => {
+        return b.episode - a.episode;
+      })
+      let endingEpisode = pointsData[0];
+      talentPoints.value += epilogues * endingEpisode.talents;
+      skillPoints.value += epilogues * endingEpisode.skills;
+    }
 });
 
 </script>

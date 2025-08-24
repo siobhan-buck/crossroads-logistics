@@ -1,22 +1,18 @@
 <script setup lang="ts">
 import type { SkillData } from '@/stores/builder.types';
-import { ref } from 'vue';
 
 const props = defineProps<{
   skill: SkillData,
+  purchases: number
 }>()
-const emit = defineEmits(['skillTransaction']);
-
-var purchases = ref(0);
+const emit = defineEmits(['addSkill', 'removeSkill']);
 
 const addSkill = () => {
-  purchases.value++;
-  emit('skillTransaction', -1* props.skill.cost);
+  emit('addSkill', props.skill.id, props.skill.cost);
 }
 
 const removeSkill = () => {
-  purchases.value--;
-  emit('skillTransaction', props.skill.cost);
+  emit('removeSkill', props.skill.id, props.skill.cost);
 }
 </script>
 

@@ -16,11 +16,21 @@ export const useCharacterStore = defineStore('character', () => {
         }
     }
 
+    const addSkill = (id: number) => {
+        skillsTaken.set(id, (skillsTaken.get(id) ?? 0) + 1);
+    }
+
+    const removeSkill = (id: number) => {
+        skillsTaken.set(id, (skillsTaken.get(id) ?? 1) - 1);
+    }
+
     return { 
         episodes, 
         talentsTaken, 
         skillsTaken, 
         incrementEpisodes, 
-        decrementEpisodes 
+        decrementEpisodes,
+        addSkill,
+        removeSkill
     };
 })

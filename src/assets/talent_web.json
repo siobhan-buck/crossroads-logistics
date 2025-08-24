@@ -2,19 +2,19 @@
   "nodes": [
     {
       "id": 1,
-      "name": "Magic"
+      "name": "MAGIC"
     },
     {
       "id": 2,
-      "name": "Craft"
+      "name": "CRAFT"
     },
     {
       "id": 3,
-      "name": "Armour"
+      "name": "ARMOUR"
     },
     {
       "id": 4,
-      "name": "Stealth"
+      "name": "STEALTH"
     },
     {
       "id": 5,
@@ -36,7 +36,7 @@
     },
     {
       "id": 9,
-      "name": "???"
+      "name": "draco"
     },
     {
       "id": 10,
@@ -80,7 +80,7 @@
     },
     {
       "id": 20,
-      "name": "wand"
+      "name": "orb"
     },
     {
       "id": 21,

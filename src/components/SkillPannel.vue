@@ -36,6 +36,6 @@ const prereqSatisfied = (skill: SkillData) => {
 <template>
     <BuildPoints v-bind:points="skillPoints" type="skill" />
     <div v-for="skill in data">
-        <SkillItem v-if="prereqSatisfied(skill)" @add-skill="addSkill" @remove-skill="removeSkill" :skill="skill" :purchases="character.skillsTaken.get(skill.id) ?? 0" />
+        <SkillItem v-if="prereqSatisfied(skill)" @add-skill="addSkill" @remove-skill="removeSkill" :skill="skill" :purchases="character.skillsTaken.get(skill.id) ?? 0" :free-points="skillPoints" />
     </div>
 </template>

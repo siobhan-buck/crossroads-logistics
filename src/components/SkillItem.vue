@@ -4,6 +4,7 @@ import type { SkillData } from '@/stores/builder.types';
 const props = defineProps<{
   skill: SkillData,
   purchases: number
+  freePoints: number
 }>()
 const emit = defineEmits(['addSkill', 'removeSkill']);
 
@@ -20,8 +21,8 @@ const removeSkill = () => {
   <div class="skill-item">
     <div>
       {{ purchases }}
-      <button @click="addSkill()">+1</button>
-      <button @click="removeSkill()">-1</button>
+      <button :disabled="freePoints < skill.cost" @click="addSkill()">+1</button>
+      <button :disabled="purchases == 0" @click="removeSkill()">-1</button>
       <h3>
         {{ props.skill.name }} ({{ props.skill.cost }})
       </h3>

@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue';
 import TalentWeb from '../components/TalentWeb.vue';
 import BuildPoints from '../components/BuildPoints.vue';
 import SkillPannel from '@/components/SkillPannel.vue';
+import SimpleCounter from './SimpleCounter.vue';
 import pointsData from '../assets/build_points.json';
 import { useCharacterStore } from '@/stores/character';
 
@@ -25,28 +26,40 @@ var skillTransaction = (points: number) => {
   skillPoints.value += points;
 }
 
+var episodeTransaction = (points: number) => {
+  character.episodes += points;
+  refreshPoints();
+}
+
+var refreshPoints = () => {
+  talentPoints.value = 0;
+  skillPoints.value = 0;
+  pointsData.forEach((d) => {
+      if (d.episode <= character.episodes) {
+          talentPoints.value += d.talents;
+          skillPoints.value += d.skills;
+      }
+  });
+  let epilogues = character.episodes - pointsData.length + 1
+  if (epilogues > 0) {
+    pointsData.sort((a, b) => {
+      return b.episode - a.episode;
+    })
+    let endingEpisode = pointsData[0];
+    talentPoints.value += epilogues * endingEpisode.talents;
+    skillPoints.value += epilogues * endingEpisode.skills;
+  }
+}
+
 onMounted(() => {
-    pointsData.forEach((d) => {
-        if (d.episode <= character.episodes) {
-            talentPoints.value += d.talents;
-            skillPoints.value += d.skills;
-        }
-    });
-    let epilogues = character.episodes - pointsData.length + 1
-    if (epilogues > 0) {
-      pointsData.sort((a, b) => {
-        return b.episode - a.episode;
-      })
-      let endingEpisode = pointsData[0];
-      talentPoints.value += epilogues * endingEpisode.talents;
-      skillPoints.value += epilogues * endingEpisode.skills;
-    }
+  refreshPoints();
 });
 
 </script>
 
 <template>
   <main>
+    <SimpleCounter @diff="episodeTransaction" title="episodes" :value="character.episodes"></SimpleCounter>
     <div class="flex-container">
       <div class="talents-diagram">
         <BuildPoints v-bind:points="talentPoints" type="talent"/>

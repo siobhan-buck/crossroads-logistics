@@ -1,0 +1,107 @@
+[
+  {
+    "episode": 0,
+    "talents": 10,
+    "skills": 100
+  },
+  {
+    "episode": 1,
+    "talents": 4,
+    "skills": 30
+  },
+  {
+    "episode": 2,
+    "talents": 4,
+    "skills": 30
+  },
+  {
+    "episode": 3,
+    "talents": 4,
+    "skills": 30
+  },
+  {
+    "episode": 4,
+    "talents": 4,
+    "skills": 30
+  },
+  {
+    "episode": 5,
+    "talents": 3,
+    "skills": 20
+  },
+  {
+    "episode": 6,
+    "talents": 3,
+    "skills": 20
+  },
+  {
+    "episode": 7,
+    "talents": 3,
+    "skills": 20
+  },
+  {
+    "episode": 8,
+    "talents": 3,
+    "skills": 20
+  },
+  {
+    "episode": 9,
+    "talents": 3,
+    "skills": 20
+  },
+  {
+    "episode": 10,
+    "talents": 2,
+    "skills": 15
+  },
+  {
+    "episode": 11,
+    "talents": 2,
+    "skills": 15
+  },
+  {
+    "episode": 12,
+    "talents": 2,
+    "skills": 15
+  },
+  {
+    "episode": 13,
+    "talents": 2,
+    "skills": 15
+  },
+  {
+    "episode": 14,
+    "talents": 2,
+    "skills": 15
+  },
+  {
+    "episode": 15,
+    "talents": 1,
+    "skills": 10
+  },
+  {
+    "episode": 16,
+    "talents": 1,
+    "skills": 10
+  },
+  {
+    "episode": 17,
+    "talents": 1,
+    "skills": 10
+  },
+  {
+    "episode": 18,
+    "talents": 1,
+    "skills": 10
+  },
+  {
+    "episode": 19,
+    "talents": 1,
+    "skills": 10
+  },
+  {
+    "episode": 20,
+    "talents": 0,
+    "skills": 5
+  }
+]

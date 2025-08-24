@@ -1,15 +1,39 @@
+<script setup lang="ts">
+import type { SkillData } from '@/stores/builder.types';
+
+const props = defineProps<{
+  skill: SkillData,
+  purchases: number
+  freePoints: number
+}>()
+const emit = defineEmits(['addSkill', 'removeSkill']);
+
+const addSkill = () => {
+  emit('addSkill', props.skill.id, props.skill.cost);
+}
+
+const removeSkill = () => {
+  emit('removeSkill', props.skill.id, props.skill.cost);
+}
+</script>
+
 <template>
-  <div class="item">
-    <h3>
-      <slot name="heading"></slot>
-    </h3>
-    <slot></slot>
+  <div class="skill-item">
+    <div>
+      {{ purchases }}
+      <button :disabled="freePoints < skill.cost" @click="addSkill()">+1</button>
+      <button :disabled="purchases == 0" @click="removeSkill()">-1</button>
+      <h3>
+        {{ props.skill.name }} ({{ props.skill.cost }})
+      </h3>
+    </div>
+    {{ props.skill.description }}
   </div>
 </template>
 
 <style>
-.item {
+.skill-item {
   margin-left: 10px;
-  margin-bottom: 10px;
 }
+
 </style>

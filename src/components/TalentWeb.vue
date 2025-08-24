@@ -3,11 +3,14 @@ import * as d3 from 'd3';
 import { useTemplateRef, onMounted } from 'vue';
 import type {WebData, WebLink, WebNode} from '../stores/builder.types';
 import webData from '../assets/talent_web.json';
+import { useCharacterStore } from '@/stores/character';
 
 
 const props = defineProps<{height: number}>();
 const emit = defineEmits(['nodeToggled']);
 const webRef = useTemplateRef('my-web');
+
+const character = useCharacterStore();
 
 onMounted(() => {
   // serialize the data from json
@@ -34,7 +37,12 @@ onMounted(() => {
     .data(data.nodes)
     .enter().append('g')
       .attr('class', (d) => {
-        return d.root? 'root-node' : 'node secondary-node'
+        if (d.root) {
+          return 'root-node';
+        } else if (character.talentsTaken.has(d.id)) {
+          return 'node selected-node'
+        }
+        return 'node secondary-node'
       });
 
   node.append('circle')
@@ -72,7 +80,7 @@ onMounted(() => {
         .attr('y2', d => (d.target as WebNode).y ?? 0);
 
     node.attr('transform', d => { 
-      return 'translate(' + (d.x?d.x+3:0) + ',' + (d.y?d.y-3:0) + ')';
+      return 'translate(' + (d.x?d.x+6:0) + ',' + (d.y?d.y-6:0) + ')';
     });
     d3.select(webRef.value).attr('class', 'diagram');
   }

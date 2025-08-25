@@ -10,11 +10,6 @@ export interface WebLink extends d3.SimulationLinkDatum<WebNode> {
   weight: number;
 }
 
-export type WebData = {
-  nodes: Array<WebNode>;
-  links: Array<WebLink>;
-};
-
 export type SkillData = {
   id: number;
   name: string;
@@ -23,7 +18,7 @@ export type SkillData = {
   cost: number;
 }
 
-export type PointsData = {
+export type EpisodesData = {
   episode: number;
   talents: number;
   skills: number;

@@ -76,11 +76,11 @@ onMounted(() => {
         let classList = (e.target as SVGCircleElement).parentElement?.classList;
         if (classList?.contains('selected-node')) {
           character.talentsTaken.delete(d.id);
-          emit('talentTransaction', 1);
+          emit('talentTransaction', d.root? 0 : 1);
           categorizeNodes();
         } else if (classList?.contains('next-node')) {
           character.talentsTaken.add(d.id);
-          emit('talentTransaction', -1);
+          emit('talentTransaction', d.root? 0 : -1);
           categorizeNodes();
         }
       });

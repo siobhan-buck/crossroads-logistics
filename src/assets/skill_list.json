@@ -40,5 +40,33 @@
         "talents": [18],
         "description": "Double damage on a strike when flanking.",
         "cost": 10
+    },
+    {
+        "id": 7,
+        "name": "Slay",
+        "talents": [15],
+        "description": "Your next two-handed swing is five times more powerful.",
+        "cost": 10
+    },
+    {
+        "id": 8,
+        "name": "Disarm Shield",
+        "talents": [15],
+        "description": "Your next two-handed swing will disarm the shield it hits.",
+        "cost": 20
+    },
+    {
+        "id": 9,
+        "name": "Disarm Weapon",
+        "talents": [19, 15],
+        "description": "Your next swing will disarm the weapon it hits.",
+        "cost": 10
+    },
+    {
+        "id": 10,
+        "name": "Flurry",
+        "talents": [19],
+        "description": "Your next three dual wielded swings are three times more powerful.",
+        "cost": 10
     }
 ]

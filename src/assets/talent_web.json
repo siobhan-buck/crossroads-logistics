@@ -2,26 +2,24 @@
   "nodes": [
     {
       "id": 1,
-      "name": "MAGIC"
+      "name": "MAGIC",
+      "root": true
     },
     {
       "id": 2,
-      "name": "CRAFT"
+      "name": "CRAFT",
+      "root": true
     },
     {
       "id": 3,
-      "name": "ARMOUR"
+      "name": "ARMOUR",
+      "root": true
     },
     {
       "id": 4,
-      "name": "STEALTH"
-    },
-    {
-      "id": 5,
-      "name": "simple wps",
+      "name": "STEALTH",
       "root": true
     },
-
     {
       "id": 6,
       "name": "primal"
@@ -193,22 +191,12 @@
     {
       "source": 1,
       "target": 2,
-      "weight": 1
-    },
-    {
-      "source": 2,
-      "target": 5,
-      "weight": 5
-    },
-    {
-      "source": 3,
-      "target": 5,
-      "weight": 5
+      "weight": 0
     },
     {
       "source": 1,
       "target": 4,
-      "weight": 1
+      "weight": 0
     },
     {
       "source": 6,
@@ -232,18 +220,13 @@
     },
     {
       "source": 1,
-      "target": 5,
-      "weight": 5
-    },
-    {
-      "source": 1,
       "target": 6,
       "weight": 1
     },
     {
       "source": 2,
       "target": 3,
-      "weight": 1
+      "weight": 0
     },
     {
       "source": 1,
@@ -253,17 +236,12 @@
     {
       "source": 3,
       "target": 4,
-      "weight": 1
+      "weight": 0
     },
     {
       "source": 8,
       "target": 1,
       "weight": 1
-    },
-    {
-      "source": 4,
-      "target": 5,
-      "weight": 5
     },
     {
       "source": 1,

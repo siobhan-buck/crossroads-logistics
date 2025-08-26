@@ -23,8 +23,8 @@ const categorizeNodes = () => {
   graph.nodesMap.forEach((node, id) => {
     let classList = document.getElementById(NODE_PREFIX + id)?.classList;
     classList?.remove('root-node', 'selected-node', 'next-node', 'node');
-    if (node.root) {
-      classList?.add('root-node');
+    if (character.talentsTaken.size == 0 && node.root) {
+      classList?.add('next-node');
     } else if (character.talentsTaken.has(id)) {
       classList?.add('selected-node');
     } else if (graph.getNeighbours(id).filter(i => character.talentsTaken.has(i)).length > 0) {
@@ -54,6 +54,7 @@ onMounted(() => {
     .attr('class', (d) => {return d.weight > 0 ? 'link' : ''});
 
   const linkText = link.append('text')
+    .attr('class', 'hidden')
     .attr('dy', '.35em')
     .attr('text-anchor','middle')
     .text((d) => { return d.weight });

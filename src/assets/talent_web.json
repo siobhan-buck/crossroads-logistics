@@ -2,26 +2,24 @@
   "nodes": [
     {
       "id": 1,
-      "name": "MAGIC"
+      "name": "MAGIC",
+      "root": true
     },
     {
       "id": 2,
-      "name": "CRAFT"
+      "name": "CRAFT",
+      "root": true
     },
     {
       "id": 3,
-      "name": "ARMOUR"
+      "name": "ARMOUR",
+      "root": true
     },
     {
       "id": 4,
-      "name": "STEALTH"
-    },
-    {
-      "id": 5,
-      "name": "simple wps",
+      "name": "STEALTH",
       "root": true
     },
-
     {
       "id": 6,
       "name": "primal"
@@ -60,7 +58,7 @@
     },
     {
       "id": 15,
-      "name": "heavy wps"
+      "name": "two-handing"
     },
     {
       "id": 16,
@@ -97,86 +95,216 @@
     {
       "id": 24,
       "name": "larceny"
+    },
+    {
+      "id": 25,
+      "name": "+",
+      "health": true
+    },
+    {
+      "id": 26,
+      "name": "+",
+      "health": true
+    },
+    {
+      "id": 27,
+      "name": "+",
+      "health": true
+    },
+    {
+      "id": 28,
+      "name": "+",
+      "health": true
+    },
+    {
+      "id": 29,
+      "name": "+",
+      "health": true
+    },
+    {
+      "id": 30,
+      "name": "+",
+      "health": true
+    },
+    {
+      "id": 31,
+      "name": "+",
+      "health": true
+    },
+    {
+      "id": 32,
+      "name": "+",
+      "health": true
+    },
+    {
+      "id": 33,
+      "name": "+",
+      "health": true
+    },
+    {
+      "id": 34,
+      "name": "+",
+      "health": true
+    },
+    {
+      "id": 35,
+      "name": "+",
+      "health": true
+    },
+    {
+      "id": 36,
+      "name": "+",
+      "health": true
     }
   ],
   "links": [
     {
-      "source": 16,
+      "source": 1,
+      "target": 2,
+      "weight": 0
+    },
+    {
+      "source": 2,
+      "target": 3,
+      "weight": 0
+    },
+    {
+      "source": 3,
+      "target": 4,
+      "weight": 0
+    },
+    {
+      "source": 4,
+      "target": 1,
+      "weight": 0
+    },
+    {
+      "source": 33,
       "target": 24,
       "weight": 1
     },
     {
-      "source": 2,
+      "source": 35,
       "target": 14,
       "weight": 1
     },
     {
-      "source": 2,
+      "source": 35,
       "target": 23,
       "weight": 1
     },
     {
-      "source": 2,
+      "source": 35,
       "target": 22,
       "weight": 1
     },
     {
-      "source": 2,
+      "source": 35,
       "target": 21,
       "weight": 1
     },
     {
+      "source": 28,
+      "target": 20,
+      "weight": 1
+    },
+    {
+      "source": 36,
+      "target": 25,
+      "weight": 1
+    },
+    {
+      "source": 26,
+      "target": 25,
+      "weight": 1
+    },
+    {
+      "source": 27,
+      "target": 26,
+      "weight": 1
+    },
+    {
+      "source": 27,
+      "target": 28,
+      "weight": 1
+    },
+    {
+      "source": 29,
+      "target": 36,
+      "weight": 1
+    },
+    {
+      "source": 29,
+      "target": 30,
+      "weight": 1
+    },
+    {
+      "source": 26,
+      "target": 31,
+      "weight": 1
+    },
+    {
+      "source": 31,
+      "target": 35,
+      "weight": 1
+    },
+    {
       "source": 2,
-      "target": 20,
+      "target": 35,
       "weight": 1
     },
     {
-      "source": 1,
-      "target": 20,
+      "source": 33,
+      "target": 30,
       "weight": 1
     },
     {
-      "source": 4,
-      "target": 16,
-      "weight": 1
-    },
-    {
-      "source": 4,
+      "source": 33,
       "target": 17,
       "weight": 1
     },
     {
-      "source": 4,
+      "source": 33,
       "target": 18,
       "weight": 1
     },
     {
-      "source": 3,
+      "source": 34,
+      "target": 3,
+      "weight": 1
+    },
+    {
+      "source": 34,
       "target": 19,
       "weight": 1
     },
     {
-      "source": 4,
+      "source": 33,
       "target": 19,
       "weight": 1
     },
     {
-      "source": 3,
+      "source": 33,
+      "target": 4,
+      "weight": 1
+    },
+    {
+      "source": 34,
       "target": 14,
       "weight": 1
     },
     {
-      "source": 3,
+      "source": 34,
       "target": 15,
       "weight": 1
     },
     {
-      "source": 3,
+      "source": 34,
       "target": 11,
       "weight": 1
     },
     {
-      "source": 3,
+      "source": 34,
       "target": 12,
       "weight": 1
     },
@@ -188,26 +316,6 @@
     {
       "source": 11,
       "target": 13,
-      "weight": 1
-    },
-    {
-      "source": 1,
-      "target": 2,
-      "weight": 1
-    },
-    {
-      "source": 2,
-      "target": 5,
-      "weight": 0
-    },
-    {
-      "source": 3,
-      "target": 5,
-      "weight": 0
-    },
-    {
-      "source": 1,
-      "target": 4,
       "weight": 1
     },
     {
@@ -231,43 +339,38 @@
       "weight": 1
     },
     {
-      "source": 1,
-      "target": 5,
-      "weight": 0
-    },
-    {
-      "source": 1,
+      "source": 36,
       "target": 6,
       "weight": 1
     },
     {
-      "source": 2,
-      "target": 3,
-      "weight": 1
-    },
-    {
-      "source": 1,
+      "source": 36,
       "target": 7,
       "weight": 1
     },
     {
-      "source": 3,
-      "target": 4,
-      "weight": 1
-    },
-    {
       "source": 8,
-      "target": 1,
+      "target": 36,
       "weight": 1
     },
     {
-      "source": 4,
-      "target": 5,
-      "weight": 0
+      "source": 36,
+      "target": 9,
+      "weight": 1
     },
     {
-      "source": 1,
-      "target": 9,
+      "source": 30,
+      "target": 32,
+      "weight": 1
+    },
+    {
+      "source": 16,
+      "target": 32,
+      "weight": 1
+    },
+    {
+      "source": 36,
+      "target": 1,
       "weight": 1
     }
   ]

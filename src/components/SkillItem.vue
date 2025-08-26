@@ -18,22 +18,32 @@ const removeSkill = () => {
 </script>
 
 <template>
-  <div class="skill-item">
-    <div>
-      {{ purchases }}
-      <button :disabled="freePoints < skill.cost" @click="addSkill()">+1</button>
-      <button :disabled="purchases == 0" @click="removeSkill()">-1</button>
-      <h3>
-        {{ props.skill.name }} ({{ props.skill.cost }})
-      </h3>
+  <div class="skill-button-block">
+    <div class="skill-purchases-value">
+      <span v-if="purchases > 0" class="orange-soft">{{ purchases }}</span>
+      <span v-else>{{ purchases }}</span>
+      {{ props.skill.name }} ({{ props.skill.cost }})
     </div>
-    {{ props.skill.description }}
   </div>
+  <button :disabled="freePoints < skill.cost" @click="addSkill()">+1</button>
+  <button :disabled="purchases == 0" @click="removeSkill()">-1</button>
+  <br/>
+  {{ props.skill.description }}
 </template>
 
 <style>
-.skill-item {
-  margin-left: 10px;
+.orange-soft {
+  color: var(--vt-c-orange-soft);
+}
+
+.skill-button-block {
+  display: inline-flex;
+}
+
+.skill-purchases-value {
+  font-size: 18px;
+  margin: auto;
+  padding-right: 10px;
 }
 
 </style>

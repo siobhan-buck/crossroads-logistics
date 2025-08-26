@@ -8,16 +8,47 @@
 } */
 
 a,
-.green {
+.indigo {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: var(--vt-c-indigo-soft);
   transition: 0.4s;
   padding: 3px;
 }
 
+button {
+  background: var(--vt-c-indigo);
+  border-radius: 999px;
+  box-shadow: var(--vt-c-indigo) 0 10px 20px -10px;
+  box-sizing: border-box;
+  color: var(--vt-c-text-dark-2);
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 18px;
+  opacity: 1;
+  outline: 0 solid transparent;
+  padding: 8px 18px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  word-break: break-word;
+  border: 0;
+}
+
+button:disabled,
+button[disabled]{
+  background: black;
+  cursor: default;
+  pointer-events: none;
+}
+
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    background-color: hsla(56, 100%, 37%, 0.2);
+  }
+  button:hover {
+    background-color: var(--vt-c-yellow);
   }
 }
 

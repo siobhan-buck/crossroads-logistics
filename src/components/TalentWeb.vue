@@ -27,10 +27,10 @@ const categorizeNodes = () => {
       classList?.add('next-node');
     } else if (node.root && character.talentsTaken.size > 1 && character.talentsTaken.has(id)) {
       classList?.add('anchor-node')
-    } else if (character.talentsTaken.has(id)) {
-      classList?.add('selected-node');
     } else if (node.root) {
       classList?.add('dead-node');
+    } else if (character.talentsTaken.has(id)) {
+      classList?.add('selected-node');
     } else if (graph.getNeighbours(id).filter(i => character.talentsTaken.has(i)).length > 0) {
       classList?.add('next-node');
     } else {

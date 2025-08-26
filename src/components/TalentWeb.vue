@@ -88,7 +88,7 @@ onMounted(() => {
   node.append('text')
       .attr('dy', '.35em')
       .attr('text-anchor','middle')
-      .text((d) => { return d.name });
+      .text((d) => { return d.name + d.id });
   
   // assign classes to the nodes based on their heirarchy from taken nodes
   categorizeNodes();

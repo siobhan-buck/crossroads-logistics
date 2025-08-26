@@ -25,7 +25,7 @@
         "name": "Barricade",
         "talents": [14],
         "description": "Negate the effect of a spell that hits your shield.",
-        "cost": 10
+        "cost": 20
     },
     {
         "id": 5,

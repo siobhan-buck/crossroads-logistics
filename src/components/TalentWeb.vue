@@ -5,6 +5,12 @@ import type {WebLink, WebNode} from '../stores/builder.types';
 import { useCharacterStore } from '@/stores/character';
 import { useGraphStore } from '@/stores/graph';
 
+const NODE_PREFIX = 'talent-web-node-';
+const generateLinkId = (link: WebLink) => {
+  let a = (link.source as WebNode).id;
+  let b = (link.target as WebNode).id;
+  return 'talent-web-link-' + (a < b ? a + "-" + b : b + "-" + a);
+}
 
 const props = defineProps<{height: number}>();
 const emit = defineEmits(['nodeToggled']);
@@ -25,15 +31,23 @@ onMounted(() => {
   const link = svg
     .selectAll('.link')
     .data(graph.links)
-    .enter()
-    .append('line')
-      .attr('class', (d) => {return d.weight > 0 ? 'link' : ''});
+    .enter().append('g')
+      .attr('id', (d) => { return generateLinkId(d) });
+
+  const linkLine = link.append('line')
+    .attr('class', (d) => {return d.weight > 0 ? 'link' : ''});
+
+  const linkText = link.append('text')
+    .attr('dy', '.35em')
+    .attr('text-anchor','middle')
+    .text((d) => { return d.weight });
 
   // Initialize the nodes
   const node = svg
     .selectAll('.node')
     .data(graph.nodesMap.values())
     .enter().append('g')
+      .attr('id', (d) => {return NODE_PREFIX + d.id})
       .attr('class', (d) => {
         if (d.root) {
           return 'root-node';
@@ -63,7 +77,7 @@ onMounted(() => {
   d3.forceSimulation(Array.from(graph.nodesMap.values()))                                  // Force algorithm is applied to data.nodes
       .force('link', d3.forceLink<WebNode, WebLink>()     // This force provides links between nodes
             .id(function(d) { return d.id; })                     // This provide  the id of a node
-            .links(graph.links)                                    // and this the list of links
+            .links(graph.links)                                   // and this the list of links
       )
       .force('charge', d3.forceManyBody().strength(-350))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
       .force('center', d3.forceCenter(width / 2, props.height / 2))     // This force attracts nodes to the center of the svg area
@@ -71,15 +85,26 @@ onMounted(() => {
 
   // This function is run at the end of the force algorithm, updating the nodes position.
   function ticked() {
-    link
+    node.attr('transform', d => { 
+      return 'translate(' + (d.x ?? 0) + ',' + (d.y ?? 0) + ')';
+    });
+
+    linkLine
         .attr('x1', d => (d.source as WebNode).x ?? 0)
         .attr('y1', d => (d.source as WebNode).y ?? 0)
         .attr('x2', d => (d.target as WebNode).x ?? 0)
         .attr('y2', d => (d.target as WebNode).y ?? 0);
 
-    node.attr('transform', d => { 
-      return 'translate(' + (d.x?d.x+6:0) + ',' + (d.y?d.y-6:0) + ')';
-    });
+    // center the link text in the link
+    linkText
+        .attr('x', d => {
+          return (((d.source as WebNode).x ?? 0) + ((d.target as WebNode).x ?? 0)) / 2;
+        })
+        .attr('y', d => {
+          return (((d.source as WebNode).y ?? 0) + ((d.target as WebNode).y ?? 0)) / 2;
+        })
+
+
     d3.select(webRef.value).attr('class', 'diagram');
   }
 
@@ -101,7 +126,7 @@ onMounted(() => {
 }
 
 .link {
-  stroke: #aaa;
+  stroke: #bf5149;
 }
 
 .root-node circle {

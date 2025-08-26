@@ -11,6 +11,7 @@ const character = useCharacterStore();
 
 const talentPoints = ref(0);
 const skillPoints = ref(0);
+const healthPoints = ref(0);
 
 var talentTransaction = (points: number) => {
   talentPoints.value += points;
@@ -18,6 +19,10 @@ var talentTransaction = (points: number) => {
 
 var skillTransaction = (points: number) => {
   skillPoints.value += points;
+}
+
+var healthTransaction = (points: number) => {
+  healthPoints.value += points;
 }
 
 var episodeTransaction = (points: number) => {
@@ -55,9 +60,13 @@ onMounted(() => {
   <main>
     <SimpleCounter @diff="episodeTransaction" title="episodes" :value="character.episodes"></SimpleCounter>
     <div class="flex-container">
+      <BuildPoints class="points-flanking-item" v-bind:points="talentPoints" type="talent" :mild="true"/>
+      <BuildPoints v-bind:points="healthPoints" type="health" :mild="false"/>
+      <BuildPoints class="points-flanking-item" v-bind:points="skillPoints" type="skill" :mild="true"/>
+    </div>
+    <div class="flex-container">
       <div class="talents-diagram">
-        <BuildPoints v-bind:points="talentPoints" type="talent"/>
-        <TalentWeb @talent-transaction="talentTransaction" :height=790 />
+        <TalentWeb @talent-transaction="talentTransaction" @health-transaction="healthTransaction" :height=790 />
       </div>
       <div class="skills-pannel">
         <SkillPannel @skill-transaction="skillTransaction" v-bind:skill-points="skillPoints" :key="talentPoints"/>
@@ -67,6 +76,10 @@ onMounted(() => {
 </template>
 
 <style>
+.points-flanking-item {
+  width: 33%;
+}
+
 .skills-pannel {
   width: 34%;
 }

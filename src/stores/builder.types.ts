@@ -2,6 +2,7 @@ export interface WebNode extends d3.SimulationNodeDatum {
   id: number;
   name: string;
   root?: boolean;
+  health?: boolean;
   x?: number;
   y?: number;
 }

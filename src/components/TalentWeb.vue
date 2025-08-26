@@ -13,7 +13,7 @@ const generateLinkId = (link: WebLink) => {
 }
 
 const props = defineProps<{height: number}>();
-const emit = defineEmits(['talentTransaction']);
+const emit = defineEmits(['talentTransaction', 'healthTransaction']);
 const webRef = useTemplateRef('my-web');
 
 const character = useCharacterStore();
@@ -71,16 +71,22 @@ onMounted(() => {
       .attr('id', (d) => {return NODE_PREFIX + d.id});
 
   node.append('circle')
-      .attr('r', 20)
+      .attr('r', (d) => d.health? 14 : 20)
       .on('click', (e, d) => {
         let classList = (e.target as SVGCircleElement).parentElement?.classList;
         if (classList?.contains('selected-node')) {
           character.talentsTaken.delete(d.id);
           emit('talentTransaction', d.root? 0 : 1);
+          if (d.health) {
+            emit('healthTransaction', -1)
+          }
           categorizeNodes();
         } else if (classList?.contains('next-node')) {
           character.talentsTaken.add(d.id);
           emit('talentTransaction', d.root? 0 : -1);
+          if (d.health) {
+            emit('healthTransaction', 1)
+          }
           categorizeNodes();
         }
       });
@@ -99,7 +105,8 @@ onMounted(() => {
             .id(function(d) { return d.id; })                     // This provide  the id of a node
             .links(graph.links)                                   // and this the list of links
       )
-      .force('charge', d3.forceManyBody().strength(-300))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
+      .force('charge', d3.forceManyBody().strength(-140))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
+      .force('collide', d3.forceCollide((d) => d.health? 20 : 35))
       .force('center', d3.forceCenter(width / 2, props.height / 2))     // This force attracts nodes to the center of the svg area
       .on('end', ticked);
 

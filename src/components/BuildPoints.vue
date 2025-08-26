@@ -1,14 +1,16 @@
 <script setup lang="ts">
 defineProps<{
   points: number,
-  type: string
+  type: string,
+  mild: boolean
 }>()
 </script>
 
 <template>
     <div class="build-points-block">
         {{ type }} points
-        <div class="build-points-value">{{ points }}</div>
+        <div v-if="mild" class="build-points-value-mild">{{ points }}</div>
+        <div v-else class="build-points-value">{{ points }}</div>
     </div>
 </template>
 
@@ -20,5 +22,8 @@ defineProps<{
 }
 .build-points-value{
   color: var(--vt-c-orange-soft);
+}
+.build-points-value-mild{
+  color: var(--vt-c-yellow-soft);
 }
 </style>

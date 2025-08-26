@@ -3,7 +3,10 @@ import { defineStore } from 'pinia'
 
 export const useCharacterStore = defineStore('character', () => {
     const episodes = ref(0);
-    const talentsTaken = new Set<number>();
+
+    // initialize with root id for now, this is a hack
+    const talentsTaken = new Set<number>([5]);
+
     const skillsTaken= new Map<number, number>();
 
     const incrementEpisodes = () => {

@@ -12,14 +12,8 @@ const character = useCharacterStore();
 const talentPoints = ref(0);
 const skillPoints = ref(0);
 
-var toggle = (id: number) => {
-  if (character.talentsTaken.has(id)) {
-    talentPoints.value++;
-    character.talentsTaken.delete(id);
-  } else {
-    talentPoints.value--;
-    character.talentsTaken.add(id);
-  }
+var talentTransaction = (points: number) => {
+  talentPoints.value += points;
 }
 
 var skillTransaction = (points: number) => {
@@ -63,7 +57,7 @@ onMounted(() => {
     <div class="flex-container">
       <div class="talents-diagram">
         <BuildPoints v-bind:points="talentPoints" type="talent"/>
-        <TalentWeb @node-toggled="toggle" :height=790 />
+        <TalentWeb @talent-transaction="talentTransaction" :height=790 />
       </div>
       <div class="skills-pannel">
         <SkillPannel @skill-transaction="skillTransaction" v-bind:skill-points="skillPoints" :key="talentPoints"/>

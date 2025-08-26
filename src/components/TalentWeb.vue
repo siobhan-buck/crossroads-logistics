@@ -13,11 +13,27 @@ const generateLinkId = (link: WebLink) => {
 }
 
 const props = defineProps<{height: number}>();
-const emit = defineEmits(['nodeToggled']);
+const emit = defineEmits(['talentTransaction']);
 const webRef = useTemplateRef('my-web');
 
 const character = useCharacterStore();
 const graph = useGraphStore();
+
+const categorizeNodes = () => {
+  graph.nodesMap.forEach((node, id) => {
+    let classList = document.getElementById(NODE_PREFIX + id)?.classList;
+    classList?.remove('root-node', 'selected-node', 'next-node', 'node');
+    if (node.root) {
+      classList?.add('root-node');
+    } else if (character.talentsTaken.has(id)) {
+      classList?.add('selected-node');
+    } else if (graph.getNeighbours(id).filter(i => character.talentsTaken.has(i)).length > 0) {
+      classList?.add('next-node');
+    } else {
+      classList?.add('node');
+    }
+  });
+}
 
 onMounted(() => {
   // append the svg object to the body of the page
@@ -47,24 +63,20 @@ onMounted(() => {
     .selectAll('.node')
     .data(graph.nodesMap.values())
     .enter().append('g')
-      .attr('id', (d) => {return NODE_PREFIX + d.id})
-      .attr('class', (d) => {
-        if (d.root) {
-          return 'root-node';
-        } else if (character.talentsTaken.has(d.id)) {
-          return 'node selected-node'
-        }
-        return 'node secondary-node'
-      });
+      .attr('id', (d) => {return NODE_PREFIX + d.id});
 
   node.append('circle')
       .attr('r', 20)
       .on('click', (e, d) => {
-        if (d.root != true) {
-          emit('nodeToggled', d.id);
-          let classList = (e.target as SVGCircleElement).parentElement?.classList;
-          classList?.toggle('selected-node');
-          classList?.toggle('secondary-node');
+        let classList = (e.target as SVGCircleElement).parentElement?.classList;
+        if (classList?.contains('selected-node')) {
+          character.talentsTaken.delete(d.id);
+          emit('talentTransaction', 1);
+          categorizeNodes();
+        } else if (classList?.contains('next-node')) {
+          character.talentsTaken.add(d.id);
+          emit('talentTransaction', -1);
+          categorizeNodes();
         }
       });
 
@@ -72,6 +84,9 @@ onMounted(() => {
       .attr('dy', '.35em')
       .attr('text-anchor','middle')
       .text((d) => { return d.name });
+  
+  // assign classes to the nodes based on their heirarchy from taken nodes
+  categorizeNodes();
 
   // Let's list the force we wanna apply on the network
   d3.forceSimulation(Array.from(graph.nodesMap.values()))                                  // Force algorithm is applied to data.nodes
@@ -137,12 +152,16 @@ onMounted(() => {
   fill: #bf9049;
 }
 
-.node circle:hover {
+.next-node circle {
+  fill: #bdbf49;
+}
+
+.next-node circle:hover {
   fill: #49bf88;
   cursor: pointer;
 }
 
-.secondary-node circle {
+.node circle {
   fill: #c7c9c8;
 }
 

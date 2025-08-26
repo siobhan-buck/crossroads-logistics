@@ -99,7 +99,7 @@
   ],
   "links": [
     {
-      "source": 16,
+      "source": 4,
       "target": 24,
       "weight": 1
     },
@@ -189,16 +189,6 @@
       "weight": 1
     },
     {
-      "source": 1,
-      "target": 2,
-      "weight": 0
-    },
-    {
-      "source": 1,
-      "target": 4,
-      "weight": 0
-    },
-    {
       "source": 6,
       "target": 10,
       "weight": 1
@@ -224,19 +214,9 @@
       "weight": 1
     },
     {
-      "source": 2,
-      "target": 3,
-      "weight": 0
-    },
-    {
       "source": 1,
       "target": 7,
       "weight": 1
-    },
-    {
-      "source": 3,
-      "target": 4,
-      "weight": 0
     },
     {
       "source": 8,
@@ -246,6 +226,11 @@
     {
       "source": 1,
       "target": 9,
+      "weight": 1
+    },
+    {
+      "source": 1,
+      "target": 16,
       "weight": 1
     }
   ]

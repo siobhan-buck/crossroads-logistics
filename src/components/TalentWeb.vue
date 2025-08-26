@@ -22,11 +22,15 @@ const graph = useGraphStore();
 const categorizeNodes = () => {
   graph.nodesMap.forEach((node, id) => {
     let classList = document.getElementById(NODE_PREFIX + id)?.classList;
-    classList?.remove('root-node', 'selected-node', 'next-node', 'node');
+    classList?.remove('anchor-node', 'selected-node', 'dead-node', 'next-node', 'node');
     if (character.talentsTaken.size == 0 && node.root) {
       classList?.add('next-node');
+    } else if (node.root && character.talentsTaken.size > 1 && character.talentsTaken.has(id)) {
+      classList?.add('anchor-node')
     } else if (character.talentsTaken.has(id)) {
       classList?.add('selected-node');
+    } else if (node.root) {
+      classList?.add('dead-node');
     } else if (graph.getNeighbours(id).filter(i => character.talentsTaken.has(i)).length > 0) {
       classList?.add('next-node');
     } else {
@@ -95,7 +99,7 @@ onMounted(() => {
             .id(function(d) { return d.id; })                     // This provide  the id of a node
             .links(graph.links)                                   // and this the list of links
       )
-      .force('charge', d3.forceManyBody().strength(-350))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
+      .force('charge', d3.forceManyBody().strength(-300))         // This adds repulsion between nodes. Play with the -400 for the repulsion strength
       .force('center', d3.forceCenter(width / 2, props.height / 2))     // This force attracts nodes to the center of the svg area
       .on('end', ticked);
 
@@ -139,31 +143,41 @@ onMounted(() => {
 
 .diagram text {
   pointer-events: none;
+  fill: var(--color-text);
 }
 
 .link {
-  stroke: #bf5149;
+  stroke: var(--color-text);
 }
 
-.root-node circle {
-  fill: #bf6e49;
+.anchor-node circle {
+  fill: var(--vt-c-orange);
 }
 
 .selected-node circle {
-  fill: #bf9049;
+  fill: var(--vt-c-yellow);
 }
 
-.next-node circle {
-  fill: #bdbf49;
-}
-
-.next-node circle:hover {
-  fill: #49bf88;
+.selected-node circle:hover {
+  fill: var(--vt-c-yellow);
   cursor: pointer;
 }
 
+.next-node circle {
+  fill: var(--vt-c-indigo);
+}
+
+.next-node circle:hover {
+  fill: var(--vt-c-yellow);
+  cursor: pointer;
+}
+
+.dead-node circle {
+  fill: black;
+}
+
 .node circle {
-  fill: #c7c9c8;
+  fill: var(--vt-c-black-mute);
 }
 
 </style>

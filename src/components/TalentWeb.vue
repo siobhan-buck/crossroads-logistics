@@ -27,10 +27,10 @@ const categorizeNodes = () => {
       classList?.add('next-node');
     } else if (node.root && character.talentsTaken.size > 1 && character.talentsTaken.has(id)) {
       classList?.add('anchor-node')
-    } else if (node.root) {
-      classList?.add('dead-node');
     } else if (character.talentsTaken.has(id)) {
       classList?.add('selected-node');
+    } else if (node.root) {
+      classList?.add('dead-node');
     } else if (graph.getNeighbours(id).filter(i => character.talentsTaken.has(i)).length > 0) {
       classList?.add('next-node');
     } else {
@@ -94,7 +94,7 @@ onMounted(() => {
   node.append('text')
       .attr('dy', '.35em')
       .attr('text-anchor','middle')
-      .text((d) => { return d.name + d.id });
+      .text((d) => { return d.name });
   
   // assign classes to the nodes based on their heirarchy from taken nodes
   categorizeNodes();
